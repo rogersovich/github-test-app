@@ -1,54 +1,102 @@
-import { Button, Image, Input, IconButton } from '@chakra-ui/react'
-import EmptyUser from './assets/empty-user.svg'
-import { TbBrandGithub } from "react-icons/tb";
+import NotFound from './components/user/NotFound';
+import UserNavbar from './components/user/UserNavbar';
+import UserFooter from './components/user/UserFooter';
+import UserList from './components/user/UserList';
+import SkeletonParagraph from './components/SkeletonParagraph'
+import { useToast } from '@chakra-ui/react'
+import { useEffect, useState } from 'react';
+// form
+import { useForm } from "react-hook-form"
+import { yupResolver } from "@hookform/resolvers/yup"
+import { userSchema } from './schema/userSearch';;
+// store
+import { RootState } from './store';
+import { useSelector } from "react-redux";
+import { onFetchUsers } from './store/user/userApi';
+import { unsetError } from './store/user/userSlice';
+import { FormData } from './store/user/userTypes';
+import store from './store';
+// api;
+import LoadingOverlay from './components/LoadingOverlay';
 
 function App() {
+  const { users, isLoading, error } = useSelector((state: RootState) => state.user);
+
+  const toast = useToast()
+
+  const initialValues: FormData = {
+    q: "",
+  }
+
+ const [querySearch, setQuerySearch] = useState("")
+
+  const {
+    register,
+    handleSubmit,
+    watch,
+    reset,
+    formState: { errors },
+  } = useForm<FormData>({
+    defaultValues: initialValues,
+    resolver: yupResolver(userSchema),
+  })
+
+  const value = watch("q");
+  const params = {
+    q: value,
+    per_page: 5
+  }
+
+  useEffect(() => {
+
+    if (isLoading) {
+      store.dispatch(onFetchUsers(params))
+      setQuerySearch(value)
+      // reset()
+    }
+
+    if (error) {
+      toast({
+        title: 'Im Sorry',
+        description: error,
+        status: 'error',
+        duration: 2000,
+        isClosable: true,
+        position: 'top'
+      })
+      store.dispatch(unsetError())
+    }
+  }, [isLoading, error])
 
   return (
     <div>
-
-      <div className='grid-12 tw-bg-[#FCF3E6] tw-min-h-screen tw-py-3'>
-        <div className='xl:tw-col-start-5 xl:tw-col-span-4 tw-col-span-12'>
-          <div className='tw-bg-[#FFF] tw-px-4 tw-py-5 tw-shadow tw-rounded tw-h-[100%] tw-relative fcc'>
-            <div className='tw-absolute tw-z-20 tw-top-0 tw-left-0 tw-bg-[#F1C148] tw-w-full tw-px-4 tw-py-1.5 tw-shadow tw-rounded-md'>
-              <div className='fcb'>
-                <div className='medium tw-text-gray-800 tw-text-[18px]'>
-                  Dimas Roger Widianto
-                </div>
-                <div>
-                  <IconButton
-                    aria-label='Github'
-                    variant={'ghost'}
-                    icon={<TbBrandGithub size='30px' />}
-                  />
-                </div>
-              </div>
-            </div>
+      {isLoading && (
+        <LoadingOverlay isLoading={isLoading} />
+      )}
+      <div className='container'>
+        <div className='container-content'>
+          <div className={`card ${!isLoading && users.length === 0 ? 'fcc' : 'tw-pt-16'}`}>
+            <UserNavbar />
             <div className='tw-w-full'>
-              {/* no data handle */}
-              <div className='tw-text-center'>
-                <div className='fcc'>
-                  <Image src={EmptyUser} height={'250px'} alt='Empty User' />
-                </div>
-                <div className='tw-mt-5'>
-
-                  <div className='tw-text-[18px] tw-font-medium tw-text-gray-800'>
-                    I'm sorry there's no username found
+              {
+                !isLoading && users.length > 0 ? (
+                  <UserList users={users} querySearch={querySearch} />
+                ) : !isLoading && users.length === 0 ? (
+                  <NotFound />
+                ) : (
+                  <div>
+                    <div className="grid-1 tw-gap-4">
+                      {[...Array(4)].map((x, i) => (
+                        <div key={i} className="tw-col-span-1">
+                          <SkeletonParagraph />
+                        </div>
+                      ))}
+                    </div>
                   </div>
-                  <div className='tw-text-[16px] tw-text-gray-600'>
-                    Please search github username in text input below
-                  </div>
-                </div>
-              </div>
-              {/* end */}
-              <div className='tw-mt-8'>
-                <Input placeholder='Search Github username here...' />
-              </div>
+                )
+              }
             </div>
-            <div className='tw-absolute tw-z-20 tw-bottom-0 tw-left-0 tw-bg-white tw-w-full tw-px-4 tw-py-3 tw-rounded-b-md'>
-
-              <Button color={"#FFF"} bgColor={'#F1C148'} width={'full'}>Search User</Button>
-            </div>
+            <UserFooter watch={watch} initialValues={initialValues} register={register} errors={errors} handleSubmit={handleSubmit} />
           </div>
         </div>
       </div>

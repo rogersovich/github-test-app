@@ -11,6 +11,31 @@
   -webkit-text-size-adjust: 100%;
 }
 
+.overlay {
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 99;
+}
+
+.overlay__inner {
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+
+.overlay__content {
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
 @layer base {
   h1 {
     @apply tw-text-4xl;
@@ -180,23 +205,22 @@
   .semibold {
     @apply tw-font-semibold;
   }
-  .img-skill-tr {
-    @apply tw-absolute tw-z-10 md:tw--top-8 tw--top-6 md:tw--right-8 tw--right-6;
+  .footer-card {
+    @apply tw-absolute tw-z-20 tw-bottom-0 tw-left-0 tw-bg-white tw-w-full tw-px-4 tw-py-3 tw-rounded-b-md
   }
-  .img-skill-br {
-    @apply tw-absolute tw-z-10 md:tw--bottom-8 md:tw--right-8 tw--bottom-6 tw--right-6;
+  .navbar-card {
+    @apply tw-absolute tw-z-20 tw-top-0 tw-left-0 tw-bg-[#F1C148] tw-w-full tw-px-4 tw-py-1.5 tw-shadow tw-rounded-md
   }
-  .desc-skill {
-    @apply tw-text-[12px] md:tw-text-[16px] tw-whitespace-pre-line;
+  .card {
+    @apply tw-bg-[#FFF] tw-px-4 tw-py-5 tw-shadow tw-rounded tw-h-[100%] tw-relative
+  }
+  .container {
+    @apply grid-12 tw-bg-[#FCF3E6] tw-min-h-screen tw-py-3
+  }
+  .container-content {
+    @apply xl:tw-col-start-5 xl:tw-col-span-4 tw-col-span-12
   }
 
-  .subtitle-skill {
-    @apply tw-text-[16px] md:tw-text-[20px] tw-leading-[1.25];
-  }
-
-  .title-skill {
-    @apply tw-text-[25px] md:tw-text-[40px] tw-leading-[1.5] tw-text-[#ff6330] tw-tracking-[0.07em];
-  }
 }
 
 body {
