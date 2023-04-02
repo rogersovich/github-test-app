@@ -10,9 +10,9 @@ import axios from "axios";
 
 const api = axios.create({
   baseURL: 'https://api.github.com/',
-  // headers: {
-  //   Authorization: `Bearer ${token}`
-  // }
+  headers: {
+    Authorization: `Bearer ${token}`
+  }
 });
 
 api.interceptors.response.use(

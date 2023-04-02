@@ -49,7 +49,7 @@ function App() {
 
     if (isLoading) {
       store.dispatch(onFetchUsers(params))
-      store.dispatch(setQuerySearch(value)) 
+      store.dispatch(setQuerySearch(value))
       // reset()
     }
 
@@ -73,8 +73,8 @@ function App() {
       )}
       <div className='container'>
         <div className='container-content'>
-          <div className={`card ${!isLoading && users.length === 0 ? 'fcc' : 'tw-pt-16'}`}>
-            <UserNavbar />
+          <UserNavbar />
+          <div className={`card ${!isLoading && users.length === 0 ? 'fcc' : ''}`}>
             <div className='tw-w-full'>
               {
                 !isLoading && users.length > 0 ? (
@@ -94,8 +94,8 @@ function App() {
                 )
               }
             </div>
-            <UserFooter watch={watch} initialValues={initialValues} register={register} errors={errors} handleSubmit={handleSubmit} />
           </div>
+          <UserFooter watch={watch} initialValues={initialValues} register={register} errors={errors} handleSubmit={handleSubmit} />
         </div>
       </div>
     </div>

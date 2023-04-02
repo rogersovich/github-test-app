@@ -8,7 +8,7 @@ export const onFetchReposUser = createAsyncThunk<ReposUser[], string>(
     try {
       const response = await api.get(`users/${username}/repos`, {
         params: {
-          per_page: 10
+          per_page: 20
         }
       })
       const data = response.data

@@ -206,19 +206,19 @@
     @apply tw-font-semibold;
   }
   .footer-card {
-    @apply tw-absolute tw-z-20 tw-bottom-0 tw-left-0 tw-bg-white tw-w-full tw-px-4 tw-py-3 tw-rounded-b-md
+    @apply tw-sticky tw-z-20 tw-bottom-0 tw-left-0 tw-bg-white tw-w-full tw-px-4 tw-py-3 tw-rounded-b-md
   }
   .navbar-card {
-    @apply tw-absolute tw-z-20 tw-top-0 tw-left-0 tw-bg-[#F1C148] tw-w-full tw-px-4 tw-py-1.5 tw-shadow tw-rounded-md
+    @apply tw-sticky tw-z-20 tw-top-0 tw-left-0 tw-bg-[#F1C148] tw-w-full tw-px-4 tw-py-1.5 tw-shadow tw-rounded-md
   }
   .card {
-    @apply tw-bg-[#FFF] tw-px-4 tw-py-5 tw-shadow tw-rounded tw-h-[100%] tw-relative
+    @apply tw-px-4 tw-py-5 tw-relative tw-min-h-[80%]
   }
   .container {
     @apply grid-12 tw-bg-[#FCF3E6] tw-min-h-screen tw-py-3 tw-px-3 md:tw-px-0
   }
   .container-content {
-    @apply xl:tw-col-start-5 xl:tw-col-span-4 tw-col-span-12
+    @apply xl:tw-col-start-5 xl:tw-col-span-4 tw-col-span-12 tw-bg-white tw-rounded tw-shadow
   }
 
 }

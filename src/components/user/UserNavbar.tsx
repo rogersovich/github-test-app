@@ -2,6 +2,9 @@ import { IconButton } from '@chakra-ui/react'
 import { TbBrandGithub } from "react-icons/tb";
 
 const UserNavbar = () => {
+
+  const routeToGithub = () => window.open('https://github.com/rogersovich', '_blank')
+
   return (
     <>
       <div className='navbar-card'>
@@ -11,8 +14,11 @@ const UserNavbar = () => {
           </div>
           <div>
             <IconButton
+              onClick={routeToGithub}
               aria-label='Github'
               variant={'ghost'}
+              _focus={{ bgColor: '#F1C148' }}
+              _hover={{ bgColor: '#F1C148' }}
               icon={<TbBrandGithub size='30px' />}
             />
           </div>
