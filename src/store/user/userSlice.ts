@@ -6,12 +6,14 @@ export interface UserState {
   isLoading: boolean
   users: User[]
   error: string | null
+  querySearch: string
 }
 
 const initialState: UserState = {
   users: [],
   isLoading: false,
   error: null,
+  querySearch: ''
 }
 
 export const userSlice = createSlice({
@@ -23,6 +25,9 @@ export const userSlice = createSlice({
     },
     unsetError(state) {
       state.error = null
+    },
+    setQuerySearch(state, action: PayloadAction<string>) {
+      state.querySearch = action.payload
     },
   },
   extraReducers: (builder) => {
@@ -44,7 +49,7 @@ export const userSlice = createSlice({
   },
 })
 
-export const { getUsersStart, unsetError } =
+export const { getUsersStart, unsetError, setQuerySearch } =
   userSlice.actions
 
 export default userSlice.reducer

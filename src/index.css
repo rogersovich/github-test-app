@@ -215,7 +215,7 @@
     @apply tw-bg-[#FFF] tw-px-4 tw-py-5 tw-shadow tw-rounded tw-h-[100%] tw-relative
   }
   .container {
-    @apply grid-12 tw-bg-[#FCF3E6] tw-min-h-screen tw-py-3
+    @apply grid-12 tw-bg-[#FCF3E6] tw-min-h-screen tw-py-3 tw-px-3 md:tw-px-0
   }
   .container-content {
     @apply xl:tw-col-start-5 xl:tw-col-span-4 tw-col-span-12

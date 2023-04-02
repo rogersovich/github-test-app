@@ -4,7 +4,7 @@ import UserFooter from './components/user/UserFooter';
 import UserList from './components/user/UserList';
 import SkeletonParagraph from './components/SkeletonParagraph'
 import { useToast } from '@chakra-ui/react'
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 // form
 import { useForm } from "react-hook-form"
 import { yupResolver } from "@hookform/resolvers/yup"
@@ -13,22 +13,20 @@ import { userSchema } from './schema/userSearch';;
 import { RootState } from './store';
 import { useSelector } from "react-redux";
 import { onFetchUsers } from './store/user/userApi';
-import { unsetError } from './store/user/userSlice';
+import { unsetError, setQuerySearch } from './store/user/userSlice';
 import { FormData } from './store/user/userTypes';
 import store from './store';
 // api;
 import LoadingOverlay from './components/LoadingOverlay';
 
 function App() {
-  const { users, isLoading, error } = useSelector((state: RootState) => state.user);
+  const { users, isLoading, error, querySearch } = useSelector((state: RootState) => state.user);
 
   const toast = useToast()
 
   const initialValues: FormData = {
     q: "",
   }
-
- const [querySearch, setQuerySearch] = useState("")
 
   const {
     register,
@@ -51,7 +49,7 @@ function App() {
 
     if (isLoading) {
       store.dispatch(onFetchUsers(params))
-      setQuerySearch(value)
+      store.dispatch(setQuerySearch(value)) 
       // reset()
     }
 
