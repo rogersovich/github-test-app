@@ -47,9 +47,9 @@ npm start
 
 ## Screenshots
 
-![SS 1](/src/images/git-test-1.jpg){ height=300 }
-![SS 2](/src/images/git-test-2.jpg){ height=400 }
-![SS 3](/src/images/git-test-3.jpg){ height=500 }
+![SS 1](/src/images/git-test-1.jpg)
+![SS 2](/src/images/git-test-2.jpg)
+![SS 3](/src/images/git-test-3.jpg)
 
 ## License
 
