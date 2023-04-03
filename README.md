@@ -44,3 +44,13 @@ npm start
 - [Axios](https://axios-http.com/docs/intro)
 - [Redux](https://redux.js.org/)
 - [React Icon](https://react-icons.github.io/react-icons/)
+
+## Screenshots
+
+![SS 1](/src/images/git-test-1.jpg)
+![SS 2](/src/images/git-test-2.jpg)
+![SS 3](/src/images/git-test-3.jpg)
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
