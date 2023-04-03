@@ -8,5 +8,28 @@ This is a React application that allows users to search for GitHub users and dis
 
 ```bash
 git clone https://github.com/your-username/github-user-repo-search.git
+```
 
+2. Navigate into the project directory:
 
+```bash
+cd github-user-repo-search
+```
+
+3. Install the dependencies:
+
+```bash
+npm install
+```
+
+4. Start the application:
+
+```bash
+npm start
+```
+
+## Usage
+1. Enter a GitHub username in the search input field and click "Search".
+2. The application will display up to 5 users whose usernames are similar to the value entered in the search input field.
+3. Click on a user to display their repositories.
+4. The application will display all the repositories for the selected user.
