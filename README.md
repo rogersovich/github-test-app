@@ -29,7 +29,18 @@ npm start
 ```
 
 ## Usage
+
 1. Enter a GitHub username in the search input field and click "Search".
 2. The application will display up to 5 users whose usernames are similar to the value entered in the search input field.
 3. Click on a user to display their repositories.
 4. The application will display all the repositories for the selected user.
+
+## Technologies Used
+- [React](https://react.dev/)
+- [Typescript](https://www.typescriptlang.org/)
+- [Github API](https://docs.github.com/en/rest?apiVersion=2022-11-28)
+- [Chakra UI](https://chakra-ui.com/)
+- [Tailnwind CSS](https://tailwindcss.com/)
+- [Axios](https://axios-http.com/docs/intro)
+- [Redux](https://redux.js.org/)
+- [React Icon](https://react-icons.github.io/react-icons/)
